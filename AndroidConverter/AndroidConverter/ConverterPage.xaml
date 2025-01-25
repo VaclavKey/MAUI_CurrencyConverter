@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidConverter.ConverterPage"
+             xmlns:local="clr-namespace:AndroidConverter"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
+
+
+    <ContentPage.BindingContext>
+        <local:ConverterViewModel/>
+    </ContentPage.BindingContext>
+
+    
+    
+    <ContentPage.Resources>
+        <Style TargetType="Border" x:Key="CurrencyFieldStyle">
+            <Setter Property="HeightRequest" Value="{Binding CurrencyFieldHeight}"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="Background" Value="#2B2B2B"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        
+        <Style TargetType="Border" x:Key="CurrencyChoiceFieldStyle">
+            <Setter Property="HeightRequest" Value="{Binding CurrencyChoiceFieldHeight}"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="Background" Value="#2B2B2B"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        
+        <Style TargetType="Image" x:Key="CurrencyImageStyle">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="WidthRequest" Value="{Binding CurrencyImgSize}"/>
+            <Setter Property="HeightRequest" Value="{Binding CurrencyImgSize}"/>
+            <Setter Property="Margin" Value="0, 0, 20, 0"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="CurrencyAbbrStyle">
+            <Setter Property="TextColor" Value="#939393"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="End"/>
+        </Style>
+        
+        <Style TargetType="Picker" x:Key="CurrencyPickerStyle">
+            <Setter Property="TextColor" Value="#939393"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="End"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+        </Style>
+        
+        <Style TargetType="Button" x:Key="CurrencyButtonStyle">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderWidth" Value="0"/>
+            <Setter Property="HeightRequest" Value="{Binding CurrencyFieldHeight}"/>
+        </Style>
+        
+        <Style TargetType="Border" x:Key="CurrencyBtnStyle">
+            <Setter Property="WidthRequest" Value="{Binding CurrencyBtnWidth}"/>
+            <Setter Property="HeightRequest" Value="{Binding CurrencyFieldHeight}"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+        </Style>
+        
+        <Style TargetType="Entry" x:Key="CurrencyAmount">
+            <Setter Property="HorizontalTextAlignment" Value="End"/>
+            <Setter Property="Background" Value="#2B2B2B"/>
+            <Setter Property="TextColor" Value="#FFFFFF"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="WidthRequest" Value="{Binding CurrencyEntryWidth}"/>
+            <Setter Property="HeightRequest" Value="{Binding CurrencyFieldHeight}"/>
+            <Setter Property="Margin" Value="0, 0, 20, 10"/>
+        </Style>
+        
+        <Style TargetType="Label" x:Key="AbbrStyle">
+            <Setter Property="TextColor" Value="#939393"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Grid.Column" Value="0"/>
+        </Style>
+        
+        <Style TargetType="Border" x:Key="CurrencyInfoStyle">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Margin" Value="10, 0, 30, 0"/>
+            <Setter Property="WidthRequest" Value="{Binding AbbrZoneWidth}"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+        </Style>
+        
+        <Style TargetType="Label" x:Key="AmountStyle">
+            <Setter Property="TextColor" Value="#FFFFFF"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="Margin" Value="0, 0, 20, 0"/>
+            <Setter Property="WidthRequest" Value="{Binding AmountZoneWidth}"/>
+        </Style>
+    </ContentPage.Resources>
+
+    
+    
+    <VerticalStackLayout>
+        <Border Style="{StaticResource CurrencyChoiceFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Style="{StaticResource CurrencyBtnStyle}">
+                        <VerticalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="{Binding MainCurrencyImg}" Margin="0" WidthRequest="{Binding MainCurrencyImgSize}" HeightRequest="{Binding MainCurrencyImgSize}"/>
+                            <Picker Title="{Binding MainCurrencyAbbr}" ItemsSource="{Binding Currencies}" SelectedItem="{Binding MainCurrencyAbbr}" Style="{StaticResource CurrencyPickerStyle}"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Entry Style="{StaticResource CurrencyAmount}" Grid.Column="1" Keyboard="Numeric" Text="{Binding MainAmount}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="rub.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="RUB"/>
+                        </HorizontalStackLayout>
+                    </Border>
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountRUB}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+        
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="usd.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="USD"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountUSD}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+        
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="eur.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="EUR"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountEUR}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+        
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="gbp.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="GBP"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountGBP}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+        
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="jpy.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="JPY"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountJPY}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+        
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="byn.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="BYN"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountBYN}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+        
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="pln.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="PLN"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountPLN}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+        
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="cny.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="CNY"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountCNY}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+        
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="tryc.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="TRY"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountTRY}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+        
+        <Border Style="{StaticResource CurrencyFieldStyle}">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Style="{StaticResource CurrencyInfoStyle}">
+                        <HorizontalStackLayout>
+                            <Image Style="{StaticResource CurrencyImageStyle}" Source="kzt.png"/>
+                            <Label Style="{StaticResource AbbrStyle}" Text="KZT"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+
+                    <Label Style="{StaticResource AmountStyle}" Text="{Binding AmountKZT}"/>
+                </Grid>
+            </HorizontalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>

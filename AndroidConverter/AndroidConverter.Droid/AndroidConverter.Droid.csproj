@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-android</TargetFramework>
+		<SupportedOSPlatformVersion>21.0</SupportedOSPlatformVersion>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>AndroidConverter</RootNamespace>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseMaui>true</UseMaui>
+		<AndroidSigningKeyStore>converter-key.keystore</AndroidSigningKeyStore>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningStorePass>119607</AndroidSigningStorePass>
+	  <AndroidSigningKeyAlias>my-key-alias</AndroidSigningKeyAlias>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningStorePass>119607</AndroidSigningStorePass>
+	  <AndroidSigningKeyAlias>my-key-alias</AndroidSigningKeyAlias>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+		<PackageReference Include="System.Runtime.Caching" Version="9.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\AndroidConverter\AndroidConverter.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidConverter.MainPage"
+             xmlns:local="clr-namespace:AndroidConverter"             
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
+
+    <ContentPage.BindingContext>
+        <local:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="Image" x:Key="CurrencyImage">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Margin" Value="20, 10, 0, 10"/>
+        </Style>
+        
+        <Style TargetType="Label" x:Key="CurrencyName">
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="TextColor" Value="#FFFFFF"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        
+        <Style TargetType="Label" x:Key="CurrencyAbbr">
+            <Setter Property="Grid.Column" Value="2"/>
+            <Setter Property="TextColor"  Value="#939393"/>
+            <Setter Property="HorizontalOptions" Value="End"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Margin" Value="0, 10, 20, 10"/>
+        </Style>
+        
+        <Style TargetType="Button" x:Key="CurrencyButton">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Grid.ColumnSpan" Value="3"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderWidth" Value="0"/>
+            <Setter Property="HeightRequest" Value="{Binding BorderHeight}"/>
+        </Style>
+        
+        <Style TargetType="Border" x:Key="CurrencyBorder">
+            <Setter Property="BackgroundColor" Value="#2B2B2B"/>
+            <Setter Property="HeightRequest" Value="{Binding BorderHeight}"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+        
+    </ContentPage.Resources>
+
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="rub.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Российский рубль"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="RUB"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="RUBClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+            
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="usd.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Доллар США"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="USD"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="USDClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+            
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="eur.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Евро"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="EUR"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="EURClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+            
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="gbp.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Фунт Стерлингова"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="GBP"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="GBPClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+            
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="4">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="jpy.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Японская йена"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="JPY"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="JPYClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+            
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="byn.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Белорусский рубль"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="BYN"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="BYNClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+            
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="6">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="pln.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Польский злотый"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="PLN"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="PLNClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+            
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="7">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="cny.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Китайский юань"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="CNY"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="CNYClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+            
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="tryc.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Турецкая лира"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="TRY"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="TRYClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+            
+            <Border Style="{StaticResource CurrencyBorder}" Grid.Row="9">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Style="{StaticResource CurrencyImage}" Source="kzt.png"/>
+                    <Label Style="{StaticResource CurrencyName}" Text="Казахстанский тенге"/>
+                    <Label Style="{StaticResource CurrencyAbbr}" Text="KZT"/>
+                    <Button Style="{StaticResource CurrencyButton}" Clicked="KZTClicked" Command="{Binding ButtonCommand}"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>
