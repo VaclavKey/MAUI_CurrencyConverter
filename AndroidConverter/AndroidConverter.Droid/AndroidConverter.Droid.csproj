@@ -8,20 +8,22 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseMaui>true</UseMaui>
-		<AndroidSigningKeyStore>converter-key.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyStore>converter-app-key.keystore</AndroidSigningKeyStore>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <AndroidKeyStore>True</AndroidKeyStore>
 	  <AndroidSigningStorePass>119607</AndroidSigningStorePass>
-	  <AndroidSigningKeyAlias>my-key-alias</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyAlias>converter-alias</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>706911</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 	  <AndroidKeyStore>True</AndroidKeyStore>
 	  <AndroidSigningStorePass>119607</AndroidSigningStorePass>
-	  <AndroidSigningKeyAlias>my-key-alias</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyAlias>converter-alias</AndroidSigningKeyAlias>
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <AndroidSigningKeyPass>706911</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<ItemGroup>
